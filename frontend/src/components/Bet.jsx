@@ -31,7 +31,6 @@ const Bet = ({ contractAddress, contractAbi, weatherContractAddress, weatherCont
 
   return (
     <div>
-      <h2>Weather Betting App</h2>
       {/* Add your UI components and form elements */}
       <label>
         Bet Type:
