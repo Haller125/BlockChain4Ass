@@ -15,7 +15,6 @@ import Navbar from './components/Navbar.jsx';
 
 
 
-
 const App = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [provider, setProvider] = useState(null);
@@ -72,7 +71,7 @@ const App = () => {
   if (!isConnected) {
     return (
       <div>
-        <h1 className="text-primary">You must connect your wallet to continue.</h1>
+        <h1 className="headings">You must connect your wallet to continue.</h1>
         <button onClick={connectWallet}>Connect to MetaMask</button>
       </div>
     );
@@ -102,7 +101,6 @@ const App = () => {
             signer={signer}
           />
         </Container>
-
       </Router>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button, FormSelect } from 'react-bootstrap';
+import "./styles/WeatherBetting.css"
 
 const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBettingABI, signer }) => {
     const [betType, setBetType] = useState('0'); // Default to '0' for Temperature
@@ -37,7 +38,7 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
 
     return (
         <div>
-            <h2 className="text-primary">WeatherBettingComponent</h2>
+            <h2 className="headings">WeatherBettingComponent</h2>
             <Form>
                 <FormGroup>
                     <FormLabel>Bet Type:</FormLabel>
@@ -61,7 +62,7 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
                     <FormLabel>Token Amount:</FormLabel>
                     <FormControl type="text" value={tokenAmount} onChange={e => setTokenAmount(e.target.value)} />
                 </FormGroup>
-                <Button variant="primary" onClick={placeBet}>Place Bet</Button>
+                <Button variant="primary" className="mainButton" onClick={placeBet}>Place Bet</Button>
             </Form>
         </div>
     );

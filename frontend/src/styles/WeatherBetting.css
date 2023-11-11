@@ -1,0 +1,20 @@
+.headings{
+    color: #34495E;
+    font-family: Inter;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.mainButton {
+    flex-shrink: 0;
+    border-radius: 10px !important;
+    background-color: #F5A623 !important;
+    border-color: #F5A623 !important;
+    color: #34495E !important;
+    font-family: Inter !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import "./styles/WeatherBetting.css"
 
 const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, signer, spenderAddress }) => {
     const [approvalAmount, setApprovalAmount] = useState("0");
@@ -28,7 +29,7 @@ const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, signer, spende
 
     return (
         <div>
-            <h2 className="text-primary">TokenApprovalComponent</h2>
+            <h2 className="headings">TokenApprovalComponent</h2>
             <Form>
                 <FormGroup>
                     <FormLabel>Approval Amount:</FormLabel>
@@ -39,7 +40,7 @@ const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, signer, spende
                         placeholder="Amount to Approve"
                     />
                 </FormGroup>
-                <Button variant="primary" onClick={approveTokens}>Approve Tokens</Button>
+                <Button variant="primary" className="mainButton" onClick={approveTokens}>Approve Tokens</Button>
             </Form>
         </div>
     );
