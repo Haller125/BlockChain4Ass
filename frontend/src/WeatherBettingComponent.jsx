@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
+import { Form, FormGroup, FormLabel, FormControl, Button, FormSelect } from 'react-bootstrap';
 
 const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBettingABI }) => {
     const [isConnected, setIsConnected] = useState(false);
@@ -61,35 +62,35 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
 
     return (
         <div>
-            <h1>WeatherBettingComponent</h1>
+            <h2 className="text-primary">WeatherBettingComponent</h2>
             {!isConnected ? (
-                <button onClick={connectWallet}>Connect to MetaMask</button>
+                <Button variant="primary" onClick={connectWallet} >Connect to MetaMask</Button>
             ) : (
-                <div>
-                    <div>
-                        <label>Bet Type:</label>
-                        <select value={betType} onChange={e => setBetType(e.target.value)}>
+                <Form>
+                    <FormGroup>
+                        <FormLabel>Bet Type:</FormLabel>
+                        <FormSelect value={betType} onChange={e => setBetType(e.target.value)}>
                             <option value="0">Temperature</option>
                             <option value="1">WindSpeed</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Direction:</label>
-                        <select value={direction} onChange={e => setDirection(e.target.value)}>
+                        </FormSelect>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel>Direction:</FormLabel>
+                        <FormSelect value={direction} onChange={e => setDirection(e.target.value)}>
                             <option value="0">Higher</option>
                             <option value="1">Lower</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Value:</label>
-                        <input type="number" value={value} onChange={e => setValue(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Token Amount:</label>
-                        <input type="text" value={tokenAmount} onChange={e => setTokenAmount(e.target.value)} />
-                    </div>
-                    <button onClick={placeBet}>Place Bet</button>
-                </div>
+                        </FormSelect>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel>Value:</FormLabel>
+                        <FormControl type="number" value={value} onChange={e => setValue(e.target.value)} />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel>Token Amount:</FormLabel>
+                        <FormControl type="text" value={tokenAmount} onChange={e => setTokenAmount(e.target.value)} />
+                    </FormGroup>
+                    <Button variant="primary" onClick={placeBet}>Place Bet</Button>
+                </Form>
             )}
         </div>
     );

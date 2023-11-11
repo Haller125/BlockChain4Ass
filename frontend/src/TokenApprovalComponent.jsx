@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
+import { Form, FormGroup, FormLabel, FormControl, Button, FormSelect } from 'react-bootstrap';
 
 const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, spenderAddress }) => {
     const [isConnected, setIsConnected] = useState(false);
@@ -45,22 +46,22 @@ const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, spenderAddress
 
     return (
         <div>
-            <h1>TokenApprovalComponent</h1>
+            <h2 className="text-primary">TokenApprovalComponent</h2>
             {!isConnected ? (
-                <button onClick={connectWallet}>Connect to MetaMask</button>
+                <Button variant="primary"  onClick={connectWallet}>Connect to MetaMask</Button>
             ) : (
-                <div>
-                    <div>
-                        <label>Approval Amount:</label>
-                        <input 
+                <Form>
+                    <FormGroup>
+                        <FormLabel>Approval Amount:</FormLabel>
+                        <FormSelect
                             type="text" 
                             value={approvalAmount} 
                             onChange={e => setApprovalAmount(e.target.value)} 
                             placeholder="Amount to Approve" 
                         />
-                    </div>
-                    <button onClick={approveTokens}>Approve Tokens</button>
-                </div>
+                    </FormGroup>
+                    <Button variant="primary" onClick={approveTokens}>Approve Tokens</Button>
+                </Form>
             )}
         </div>
     );
