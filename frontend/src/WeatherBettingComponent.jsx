@@ -20,7 +20,7 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
 
         try {
             const parsedTokenAmount = ethers.parseEther(tokenAmount);
-            const timestampMinute = Math.floor(Date.now() / 60000); // current time in minute UNIX format
+            const timestampMinute = Math.floor(100); // current time in minute UNIX format
 
             const tx = await weatherContract.placeBet(
                 parseInt(betType),
