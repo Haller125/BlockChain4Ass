@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 import "./styles/WeatherBetting.css"
 
-const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, signer, spenderAddress }) => {
+const TokenApprovalComponent = ({ weatherBetTokenAddress, weatherBetTokenAbi, signer, spenderAddress }) => {
     const [approvalAmount, setApprovalAmount] = useState("0");
-    
+
     const approveTokens = async () => {
-        if (!(tokenABI && tokenContractAddress)) {
-            alert("Please connect to MetaMask first.");
-            return;
-        }
-
-        const tokenContract = new ethers.Contract(tokenContractAddress, tokenABI, signer);
-
         try {
+            console.log("Approving tokens...");
+
+            const tokenContract = new ethers.Contract(weatherBetTokenAddress, weatherBetTokenAbi, signer);
+
             const amountToApprove = ethers.parseEther(approvalAmount);
-            console.log("amountToApprove", amountToApprove);
+
             const tx = await tokenContract.approve(spenderAddress, amountToApprove);
-            console.log("tx", tx);
             await tx.wait();
-            alert(`Successfully approved ${approvalAmount} tokens.`);
+
+            console.log(`Successfully approved ${approvalAmount} tokens.`);
         } catch (error) {
             console.error("Error in token approval", error);
-            alert("Failed to approve tokens.");
         }
     };
 

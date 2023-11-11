@@ -1,5 +1,5 @@
-export const tokenAddress = "0x3D3fb76644C9BDFb4Cab0D621Ba8cEdE7364e6b1";
-export const weatherBettingAddress = "0x3C3703270194Ebf4e8FB1a0EbB8eb72823711FB5";
-
-// 0x3D3fb76644C9BDFb4Cab0D621Ba8cEdE7364e6b1
-// 0x3C3703270194Ebf4e8FB1a0EbB8eb72823711FB5
+export const weatherBetTokenAddress = import.meta.env
+  .VITE_WEATHER_BET_TOKEN_ADDRESS;
+console.log(weatherBetTokenAddress);
+export const weatherBettingContractAddress = import.meta.env
+  .VITE_WEATHER_BETTING_CONTRACT_ADDRESS;
