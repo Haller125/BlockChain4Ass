@@ -61,8 +61,11 @@ const App = () => {
       <Container className={"container-lg"}>
         <h1 className="text-primary">Weather Betting App</h1>
         <AccountProfileComponent
-          tokenContract={tokenContract}
           account={address}
+          // tokenContractAddress, tokenABI, provider
+          tokenContractAddress={tokenContractAddress}
+          tokenABI={tokenContractAbi}
+          provider={provider}
         />
         <WeatherBettingComponent
           weatherContract={weatherContract}
