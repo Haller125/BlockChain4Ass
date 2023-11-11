@@ -53,7 +53,7 @@ const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, spenderAddress
                 <Form>
                     <FormGroup>
                         <FormLabel>Approval Amount:</FormLabel>
-                        <FormSelect
+                        <FormControl
                             type="text" 
                             value={approvalAmount} 
                             onChange={e => setApprovalAmount(e.target.value)} 
