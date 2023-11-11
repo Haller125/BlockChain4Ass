@@ -12,6 +12,8 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
     const [value, setValue] = useState('');
     const [tokenAmount, setTokenAmount] = useState('');
 
+    const [processBetValue, setProcessBetValue] = useState('');
+
     const connectWallet = async () => {
         if (window.ethereum) {
             try {
@@ -57,6 +59,23 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
         } catch (error) {
             console.error("Error placing bet", error);
             alert("Failed to place bet.");
+        }
+    };
+
+    const processBet = async () => {
+        if (!contractWithSigner) {
+            alert("Please connect to MetaMask first.");
+            return;
+        }
+
+        try {
+            const parsedProcessBetValue = ethers.BigNumber.from(processBetValue);
+            const tx = await contractWithSigner.processBet(parsedProcessBetValue);
+            await tx.wait();
+            alert("Bet processed successfully!");
+        } catch (error) {
+            console.error("Error processing bet", error);
+            alert("Failed to process bet.");
         }
     };
 
