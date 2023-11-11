@@ -1,0 +1,23 @@
+/* src/components/Navbar.css */
+.navbar-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Adjust this based on your design preference */
+    background-color: #f0f0f0; /* Add your desired background color */
+}
+
+.navbar-item {
+    margin: 0;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #333; /* Add your desired text color */
+    padding: 10px;
+    display: inline-block;
+    transition: color 0.3s ease;} /* Add transition effect for a smoother interaction */
+
+:hover {
+     color: #007bff; /* Change color on hover to indicate interactivity */
+ }
