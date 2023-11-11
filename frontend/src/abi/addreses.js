@@ -1,5 +1,5 @@
-export const tokenAddress = "0xC2F496dBb14bd99589469442eC3d224d0fA39c02";
-export const weatherBettingAddress = "0x9C7179c2E826306f1448d17949a2D2191C01303C";
+export const tokenAddress = "0x3D3fb76644C9BDFb4Cab0D621Ba8cEdE7364e6b1";
+export const weatherBettingAddress = "0x3C3703270194Ebf4e8FB1a0EbB8eb72823711FB5";
 
 // 0x3D3fb76644C9BDFb4Cab0D621Ba8cEdE7364e6b1
 // 0x3C3703270194Ebf4e8FB1a0EbB8eb72823711FB5
