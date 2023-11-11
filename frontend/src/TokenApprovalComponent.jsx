@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 
-const TokenApprovalComponent = ({ tokenContract, spenderAddress }) => {
+const TokenApprovalComponent = ({ tokenContractAddress, tokenABI, signer, spenderAddress }) => {
     const [approvalAmount, setApprovalAmount] = useState("0");
     
     const approveTokens = async () => {
-        if (!tokenContract) {
+        if (!(tokenABI && tokenContractAddress)) {
             alert("Please connect to MetaMask first.");
             return;
         }
+
+        const tokenContract = new ethers.Contract(tokenContractAddress, tokenABI, signer);
 
         try {
             const amountToApprove = ethers.parseEther(approvalAmount);

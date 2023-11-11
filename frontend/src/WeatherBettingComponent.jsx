@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button, FormSelect } from 'react-bootstrap';
 
-const WeatherBettingComponent = ({ weatherContract }) => {
+const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBettingABI, signer }) => {
     const [betType, setBetType] = useState('0'); // Default to '0' for Temperature
     const [direction, setDirection] = useState('0'); // Default to '0' for Higher
     const [value, setValue] = useState('');
     const [tokenAmount, setTokenAmount] = useState('');
 
     const placeBet = async () => {
-        if (!weatherContract) {
+        if (!(weatherBettingABI && weatherBettingContractAddress)) {
             alert("Please connect to MetaMask first.");
             return;
         }
+
+        const weatherContract = new ethers.Contract(weatherBettingContractAddress, weatherBettingABI, signer);
 
         try {
             const parsedTokenAmount = ethers.parseEther(tokenAmount);
