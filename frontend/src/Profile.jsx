@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
-const AccountProfileComponent = ({ account, tokenContract }) => {
+const AccountProfileComponent = ({ account, tokenContractAddress, tokenABI, provider  }) => {
     const [tokenBalance, setTokenBalance] = useState('0');
 
-    const loadTokenBalance = async (address) => {
+    const loadTokenBalance = async (address, provider) => {
+        const tokenContract = new ethers.Contract(tokenContractAddress, tokenABI, provider);
+        console.log("tokenContract", tokenContract);
         try {
             const balance = await tokenContract.balanceOf(address);
             const decimals = await tokenContract.decimals();
@@ -17,8 +19,14 @@ const AccountProfileComponent = ({ account, tokenContract }) => {
     };
 
     useEffect(() => {
-        loadTokenBalance(account);
-    }, []);
+        if (account && provider) {
+            loadTokenBalance(account, provider);
+        }
+    }, [account, provider]);
+
+    if (!(account && provider)) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
