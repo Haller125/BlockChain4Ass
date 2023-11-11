@@ -16,6 +16,7 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
         }
 
         const weatherContract = new ethers.Contract(weatherBettingContractAddress, weatherBettingABI, signer);
+        console.log('weatherContract', weatherContract);
 
         try {
             const parsedTokenAmount = ethers.parseEther(tokenAmount);

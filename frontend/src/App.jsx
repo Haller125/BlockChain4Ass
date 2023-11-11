@@ -46,7 +46,7 @@ const App = () => {
     console.log('updateWeatherData');
     const temperature = 25; // Example temperature
     const windSpeed = 5; // Example wind speed
-    const timestampMinute = Math.floor(Date.now() / 60000);
+    const timestampMinute = 100;
 
     const weatherContract = new ethers.Contract(weatherContractAddress, weatherContractAbi, signer);
     console.log('weatherContract', weatherContract);
@@ -61,12 +61,9 @@ const App = () => {
     }
   };
 
-
   useEffect(() => {
-    setTimeout(() => {
-      updateWeatherData();
-    }, 0);
-  }, []);
+    updateWeatherData();
+  }, [signer]);
 
   if (!isConnected) {
     return (
