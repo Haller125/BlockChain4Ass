@@ -20,6 +20,7 @@ const App = () => {
   const [signer, setSigner] = useState(null);
   const [tokenContract, setTokenContract] = useState(null);
   const [weatherContract, setWeatherContract] = useState(null);
+  const [address, setAddress] = useState(null);
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -29,6 +30,9 @@ const App = () => {
         setProvider(newProvider);
         const newSigner = await newProvider.getSigner();
         setSigner(newSigner);
+
+        const newAddress = await newSigner.getAddress();
+        setAddress(newAddress);
 
         const contract1 = new ethers.Contract(tokenContractAddress, tokenContractAbi, signer);
         console.log("contract1", contract1);
@@ -85,8 +89,8 @@ const App = () => {
       <Container className={"container-lg"}>
         <h1 className="text-primary">Weather Betting App</h1>
         <AccountProfileComponent
-          tokenContractAddress={tokenContractAddress}
-          tokenABI={tokenContractAbi}
+          tokenContract={tokenContract}
+          account={address}
         />
         <WeatherBettingComponent
           weatherContract={weatherContract}
