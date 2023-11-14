@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
-import "./styles/WeatherBetting.css"
+import "../styles/WeatherBetting.css"
 
 const TokenApprovalComponent = ({ weatherBetTokenAddress, weatherBetTokenAbi, signer, spenderAddress }) => {
     const [approvalAmount, setApprovalAmount] = useState("0");

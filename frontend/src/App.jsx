@@ -1,4 +1,3 @@
-import './App.css'
 import { ethers } from 'ethers';
 import { weatherBetTokenAddress, weatherBettingContractAddress } from "./abi/addreses.js"
 import weatherBetTokenAbi from "./abi/weatherBetTokenAbi.js"
