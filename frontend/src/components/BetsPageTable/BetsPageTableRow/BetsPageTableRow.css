@@ -1,0 +1,45 @@
+.dateData {
+    width: 30%;
+    display: inline-block;
+}
+
+.dateCell{
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.betsCells {
+    width: 70%;
+    display: inline-block;
+}
+
+.BetsCell {
+    width: 16%;
+    display: inline-block; /* Keep it inline-block to stay in a row */
+    text-align: center;
+    vertical-align: top;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.BetsPageTableRow {
+    background-color: #7fb4f3;
+    height: 81px;
+    border-radius: 5px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.coefCell {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 50px; /* Set a specific height for .coefCell */
+    line-height: normal; /* Reset line-height as it's no longer necessary */
+    background-color: #F5A623;
+    border-radius: 10px;
+    width: 70%; /* Adjust width as per requirement */
+    margin: 0 auto; /* This centers the .coefCell in the .BetsCell if .BetsCell is wider */
+    padding-top: 5px;
+}
+

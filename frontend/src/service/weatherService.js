@@ -62,7 +62,7 @@ async function fetchWeatherData() {
         convertedDatas.push(convedtedData);
       });
 
-      console.log(convertedDatas);
+      return convertedDatas;
     } else {
       console.error("Error fetching weather data:", response.statusText);
     }
@@ -74,4 +74,4 @@ async function fetchWeatherData() {
   }
 }
 
-fetchWeatherData();
+export default fetchWeatherData;
