@@ -183,20 +183,7 @@ export default [
   },
   {
     inputs: [],
-    name: "BASE_DAILY_TOKEN_AMOUNT",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "TIME_BETWEEN_FAUCETS",
+    name: "TOKENS_PER_SEPOLIA",
     outputs: [
       {
         internalType: "uint256",
@@ -294,38 +281,19 @@ export default [
   },
   {
     inputs: [],
+    name: "buyTokens",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "decimals",
     outputs: [
       {
         internalType: "uint8",
         name: "",
         type: "uint8",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "faucet",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    name: "lastAccessTime",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -373,6 +341,13 @@ export default [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "ownerWithdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -470,6 +445,13 @@ export default [
       },
     ],
     name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdraw",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
