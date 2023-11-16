@@ -1,27 +1,15 @@
 import "./BetsPageTableRow.css"
+import {useState} from "react";
 
 // eslint-disable-next-line no-unused-vars,react-refresh/only-export-components
 
-/**return {
-    date,
-    moreThanTemp,
-    moreThanTempCoef,
-    moreThanTempPlus,
-    moreThanTempPlusCoef,
-    lessThanTemp,
-    lessThanTempCoef,
-    lessThanTempPlus,
-    lessThanTempPlusCoef,
-    moreThanWindSpeed,
-    moreThanWindSpeedCoef,
-    lessThanWindSpeed,
-    lessThanWindSpeedCoef
- }**/
-const BetsPageTableRow = ({dayBetData}) => {
+const BetsPageTableRow = ({dayBetData, modalShow, time}) => {
+    console.log(dayBetData)
     let date = new Date(dayBetData.date * 1000);
 
     return (
         <div className={"BetsPageTableRow"}>
+
             <div className={"dateData"}>
                 <div className={"dateCell"}>
                     {date.getDate()+"/"+(date.getMonth()+1)}
@@ -31,13 +19,14 @@ const BetsPageTableRow = ({dayBetData}) => {
                 {dayBetData.betsData.map((betData) => (
                     // eslint-disable-next-line react/jsx-key
                     <div className={"BetsCell"}>
-                        <div className={"coefCell"}>
+                        <div key={betData.id} className={"coefCell"} onClick={() => modalShow(betData, time)}>
                             {betData.coef}
                         </div>
                         {betData.type + " " + betData.temp}
                     </div>
                 ))}
             </div>
+
         </div>
     );
 }
