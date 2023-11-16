@@ -12,8 +12,40 @@
 .navbar-item {
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+.navbar-item p img{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px; /* Add margin between the image and the second <p> */
+}
+
+.navbar-item .row {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item p{
+    margin-bottom: 0px;
+    color: #000;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.navbar-item p:first-child{
+    color: #34495E;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .navbar-link {
