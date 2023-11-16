@@ -142,4 +142,8 @@ contract WeatherBetting is Ownable {
         // Mark bet as processed
         bet.processed = true;
     }
+
+    function getBetCount() external view returns (uint256) {
+        return bets.length;
+    }
 }

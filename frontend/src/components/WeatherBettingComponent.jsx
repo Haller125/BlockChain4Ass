@@ -19,6 +19,8 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
     const [direction, setDirection] = useState(Direction.Higher);
     const [value, setValue] = useState('');
     const [tokenAmount, setTokenAmount] = useState('');
+    const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+    const [coefficient, setCoefficient] = useState('');
 
     const placeBet = async () => {
         try {
@@ -27,14 +29,16 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
             const weatherContract = new ethers.Contract(weatherBettingContractAddress, weatherBettingContractAbi, signer);
 
             const parsedTokenAmount = ethers.parseEther(tokenAmount);
-            const timestampMinute = 100;
+            const selectedDate = new Date(date);
+            const timestampMinute = Math.floor(selectedDate.getTime() / 1000);
 
             const tx = await weatherContract.placeBet(
                 parseInt(betType),
                 parseInt(direction),
                 parseInt(value),
                 timestampMinute,
-                parsedTokenAmount
+                parsedTokenAmount,
+                parseInt(coefficient)
             );
             await tx.wait();
 
@@ -69,6 +73,17 @@ const WeatherBettingComponent = ({ weatherBettingContractAddress, weatherBetting
                 <FormGroup>
                     <FormLabel>Token Amount:</FormLabel>
                     <FormControl type="text" value={tokenAmount} onChange={e => setTokenAmount(e.target.value)} />
+                </FormGroup>
+                <FormGroup>
+                    <FormLabel>Date:</FormLabel>
+                    <FormControl type="date" value={date} onChange={e => {
+                        console.log(e.target.value);
+                        setDate(e.target.value);
+                    }} />
+                </FormGroup>
+                <FormGroup>
+                    <FormLabel>Coefficient:</FormLabel>
+                    <FormControl type="number" value={coefficient} onChange={e => setCoefficient(e.target.value)} />
                 </FormGroup>
                 <Button variant="primary" className="mainButton" onClick={placeBet}>Place Bet</Button>
             </Form>

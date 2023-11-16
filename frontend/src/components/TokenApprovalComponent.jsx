@@ -12,7 +12,9 @@ const TokenApprovalComponent = ({ weatherBetTokenAddress, weatherBetTokenAbi, si
 
             const tokenContract = new ethers.Contract(weatherBetTokenAddress, weatherBetTokenAbi, signer);
 
-            const amountToApprove = ethers.parseEther(approvalAmount);
+            const decimals = await tokenContract.decimals();
+
+            const amountToApprove = BigInt(approvalAmount) * BigInt(10) ** BigInt(decimals);
 
             const tx = await tokenContract.approve(spenderAddress, amountToApprove);
             await tx.wait();

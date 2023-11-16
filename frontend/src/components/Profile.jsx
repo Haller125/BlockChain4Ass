@@ -32,7 +32,7 @@ const AccountProfileComponent = ({ walletAddress, weatherBetTokenAddress, weathe
     return (
         <div>
             <div>
-                <p>Address: {walletAddress}</p>
+                <p>Your address: {walletAddress}</p>
                 <p>Token Balance: {tokenBalance} WBT</p>
             </div>
         </div>
