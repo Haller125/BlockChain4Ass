@@ -126,7 +126,12 @@ export default [
       },
       {
         internalType: "uint256",
-        name: "timestampMinute",
+        name: "timestampDay",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "coefficient",
         type: "uint256",
       },
       {
@@ -178,6 +183,11 @@ export default [
         name: "_tokenAmount",
         type: "uint256",
       },
+      {
+        internalType: "uint256",
+        name: "_coefficient",
+        type: "uint256",
+      },
     ],
     name: "placeBet",
     outputs: [],
@@ -208,7 +218,7 @@ export default [
     inputs: [
       {
         internalType: "uint256",
-        name: "_timestampMinute",
+        name: "_timestampDay",
         type: "uint256",
       },
       {
