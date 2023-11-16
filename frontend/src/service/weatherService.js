@@ -28,17 +28,23 @@ async function fetchWeatherData() {
 
       const convertData = (weatherData, nextDayCount) => {
         const date = weatherData.dt;
-        const moreThanTemp = weatherData.temp.max;
+
+        const moreThanTemp = Math.round(weatherData.temp.max);
         const moreThanTempCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
-        const moreThanTempPlus = weatherData.temp.max + PLUS_DELTA;
+
+        const moreThanTempPlus = Math.round(weatherData.temp.max + PLUS_DELTA);
         const moreThanTempPlusCoef = Math.round(BASE_COEF ** (nextDayCount + 1) * 100) / 100;
-        const lessThanTemp = weatherData.temp.min;
+
+        const lessThanTemp = Math.round(weatherData.temp.min);
         const lessThanTempCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
-        const lessThanTempPlus = weatherData.temp.min - PLUS_DELTA;
+
+        const lessThanTempPlus = Math.round(weatherData.temp.min - PLUS_DELTA);
         const lessThanTempPlusCoef = Math.round(BASE_COEF ** (nextDayCount + 1) * 100) / 100;
-        const moreThanWindSpeed = weatherData.wind_speed * WIND_SPEED_DELTA;
+
+        const moreThanWindSpeed = Math.round(weatherData.wind_speed * WIND_SPEED_DELTA);
         const moreThanWindSpeedCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
-        const lessThanWindSpeed = weatherData.wind_speed / WIND_SPEED_DELTA;
+        
+        const lessThanWindSpeed = Math.round(weatherData.wind_speed / WIND_SPEED_DELTA);
         const lessThanWindSpeedCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
         return {
           date,
