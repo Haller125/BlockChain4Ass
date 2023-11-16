@@ -19,6 +19,7 @@ import "./BetsPageTableRow.css"
  }**/
 const BetsPageTableRow = ({dayBetData}) => {
     let date = new Date(dayBetData.date * 1000);
+
     return (
         <div className={"BetsPageTableRow"}>
             <div className={"dateData"}>
@@ -27,42 +28,15 @@ const BetsPageTableRow = ({dayBetData}) => {
                 </div>
             </div>
             <div className={"betsCells"}>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.moreThanTempCoef}
+                {dayBetData.betsData.map((betData) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <div className={"BetsCell"}>
+                        <div className={"coefCell"}>
+                            {betData.coef}
+                        </div>
+                        {betData.type + " " + betData.temp}
                     </div>
-                    {dayBetData.moreThanTemp}
-                </div>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.moreThanTempPlusCoef}
-                    </div>
-                    {dayBetData.moreThanTempPlus}
-                </div>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.lessThanTempCoef}
-                    </div>
-                    {dayBetData.lessThanTemp}
-                </div>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.lessThanTempPlusCoef}
-                    </div>
-                    {dayBetData.lessThanTempPlus}
-                </div>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.moreThanWindSpeedCoef}
-                    </div>
-                    {dayBetData.moreThanWindSpeed}
-                </div>
-                <div className={"BetsCell"}>
-                    <div className={"coefCell"}>
-                        {dayBetData.lessThanWindSpeedCoef}
-                    </div>
-                    {dayBetData.lessThanWindSpeed}
-                </div>
+                ))}
             </div>
         </div>
     );
