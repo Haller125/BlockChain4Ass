@@ -1,4 +1,5 @@
 import axios from "axios";
+import typeOfBet from "./typeOfBet.js";
 
 const apiUrl = "https://api.openweathermap.org/data/3.0/onecall";
 const lat = 51.169392;
@@ -47,19 +48,31 @@ async function fetchWeatherData() {
         const lessThanWindSpeed = Math.round(weatherData.wind_speed / WIND_SPEED_DELTA);
         const lessThanWindSpeedCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
         return {
-          date,
-          moreThanTemp,
-          moreThanTempCoef,
-          moreThanTempPlus,
-          moreThanTempPlusCoef,
-          lessThanTemp,
-          lessThanTempCoef,
-          lessThanTempPlus,
-          lessThanTempPlusCoef,
-          moreThanWindSpeed,
-          moreThanWindSpeedCoef,
-          lessThanWindSpeed,
-          lessThanWindSpeedCoef,
+          date: date,
+          betsData:[
+              {temp: moreThanTemp,
+               coef: moreThanTempCoef,
+               type: typeOfBet.moreThanTemp},
+
+              {temp: moreThanTempPlus,
+               coef: moreThanTempPlusCoef,
+               type: typeOfBet.moreThanTempPlus},
+
+              {temp: lessThanTemp,
+                coef: lessThanTempCoef,
+                type: typeOfBet.lessThanTemp},
+
+              {temp: lessThanTempPlus,
+                  coef: lessThanTempPlusCoef,
+                  type: typeOfBet.lessThanTempPlus},
+
+              {temp: moreThanWindSpeed,
+                  coef: moreThanWindSpeedCoef,
+                  type: typeOfBet.moreThanWindSpeed},
+
+              {temp: lessThanWindSpeed,
+                  coef:lessThanWindSpeedCoef,
+                  type: typeOfBet.lessThanWindSpeed},]
         };
       };
 
