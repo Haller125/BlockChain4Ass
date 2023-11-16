@@ -8,6 +8,8 @@ const exclude = "current,minutely,hourly,alerts";
 const appid = "f1706d87612caed6900d28f07e3f451b";
 const units = "metric";
 const BASE_COEF = 1.2;
+const WIND_SPEED_DELTA = 1.5;
+const PLUS_DELTA = 5;
 
 async function fetchWeatherData() {
   try {
@@ -27,17 +29,17 @@ async function fetchWeatherData() {
       const convertData = (weatherData, nextDayCount) => {
         const date = weatherData.dt;
         const moreThanTemp = weatherData.temp.max;
-        const moreThanTempCoef = BASE_COEF ** nextDayCount;
-        const moreThanTempPlus = weatherData.temp.max * 2;
-        const moreThanTempPlusCoef = BASE_COEF ** (nextDayCount + 1);
+        const moreThanTempCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
+        const moreThanTempPlus = weatherData.temp.max + PLUS_DELTA;
+        const moreThanTempPlusCoef = Math.round(BASE_COEF ** (nextDayCount + 1) * 100) / 100;
         const lessThanTemp = weatherData.temp.min;
-        const lessThanTempCoef = BASE_COEF ** nextDayCount;
-        const lessThanTempPlus = weatherData.temp.min * 2;
-        const lessThanTempPlusCoef = BASE_COEF ** (nextDayCount + 1);
-        const moreThanWindSpeed = weatherData.wind_speed * 1.5;
-        const moreThanWindSpeedCoef = BASE_COEF ** nextDayCount;
-        const lessThanWindSpeed = weatherData.wind_speed / 1.5;
-        const lessThanWindSpeedCoef = BASE_COEF ** nextDayCount;
+        const lessThanTempCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
+        const lessThanTempPlus = weatherData.temp.min - PLUS_DELTA;
+        const lessThanTempPlusCoef = Math.round(BASE_COEF ** (nextDayCount + 1) * 100) / 100;
+        const moreThanWindSpeed = weatherData.wind_speed * WIND_SPEED_DELTA;
+        const moreThanWindSpeedCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
+        const lessThanWindSpeed = weatherData.wind_speed / WIND_SPEED_DELTA;
+        const lessThanWindSpeedCoef = Math.round(BASE_COEF ** nextDayCount * 100) / 100;
         return {
           date,
           moreThanTemp,
