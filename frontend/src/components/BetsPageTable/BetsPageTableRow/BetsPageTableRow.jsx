@@ -4,6 +4,7 @@ const BetsPageTableRow = ({dayBetData, modalShow, time}) => {
     let date = new Date(dayBetData.date * 1000);
 
     return (
+        
         <div className={"BetsPageTableRow"}>
 
             <div className={"dateData"}>

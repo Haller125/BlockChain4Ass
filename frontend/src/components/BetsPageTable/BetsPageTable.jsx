@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import BetsPageTableRow from "./BetsPageTableRow/BetsPageTableRow.jsx";
 import ApproveModal from "./BetsPageTableRow/ApproveModal/ApproveModal.jsx";
-
+import "../../styles/BetsPageTable.css"
 
 const BetsPageTable = ({items}) => {
     const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,8 @@ const BetsPageTable = ({items}) => {
 
 
     return (
-        <div>
+        <div className='mainContainer'>
+            <h1 className="mainHeading">Wager on the Weather!</h1>
             {items.map((item) => (
                 <BetsPageTableRow key={item.id} dayBetData={item} time={time} modalShow={handleModalShow}/>
             ))}

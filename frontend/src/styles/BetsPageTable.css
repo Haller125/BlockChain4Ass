@@ -1,0 +1,16 @@
+.mainContainer{
+    color: #34495E;
+    justify-content: center;
+}
+
+.mainHeading{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 25px;
+    font-family: Inter;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
