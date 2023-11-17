@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ethers } from 'ethers';
+import { weatherBetTokenAddress } from '../abi/addreses';
+import weatherBetTokenAbi from "../abi/weatherBetTokenAbi";
+import  { WalletContext } from "../WalletContext";
 
-const AccountProfileComponent = ({ walletAddress, weatherBetTokenAddress, weatherBetTokenAbi, provider }) => {
+
+const AccountProfileComponent = ({ walletAddress }) => {
     const [tokenBalance, setTokenBalance] = useState('0');
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    
+    const { provider } = useContext(WalletContext);
 
     useEffect(() => {
         const loadTokenBalance = async (address, provider) => {

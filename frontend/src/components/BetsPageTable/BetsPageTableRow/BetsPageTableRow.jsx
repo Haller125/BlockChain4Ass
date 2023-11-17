@@ -1,7 +1,4 @@
 import "./BetsPageTableRow.css"
-import {useState} from "react";
-
-// eslint-disable-next-line no-unused-vars,react-refresh/only-export-components
 
 const BetsPageTableRow = ({dayBetData, modalShow, time}) => {
     let date = new Date(dayBetData.date * 1000);
@@ -16,9 +13,8 @@ const BetsPageTableRow = ({dayBetData, modalShow, time}) => {
             </div>
             <div className={"betsCells"}>
                 {dayBetData.betsData.map((betData) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <div className={"BetsCell"}>
-                        <div key={betData.id} className={"coefCell"} onClick={() => modalShow(betData, time)}>
+                    <div className={"BetsCell"} key={betData.id}>
+                        <div className={"coefCell"} onClick={() => modalShow(betData, time)}>
                             {betData.coef}
                         </div>
                         {betData.type + " " + betData.temp}
