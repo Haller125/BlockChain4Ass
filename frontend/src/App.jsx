@@ -8,6 +8,9 @@ import { WalletContext } from './WalletContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfilePage from './components/Profile.jsx';
 import Footer from './components/footer.jsx';
+import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
+import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
+import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
@@ -107,6 +110,25 @@ const App = () => {
     }
   };
 
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  if (!isOnline) {
+    return <ErrorNoConnction /> ;
+  }
+
   useEffect(() => {
     // Define the async function inside the effect
     const fetchData = async () => {
@@ -135,7 +157,11 @@ const App = () => {
                   walletAddress={walletAddress}
               />} 
             />
-            
+            <Route path="/termsOfService" element={<TermsOfService />} />
+            <Route path="/privacyPolicy" element={<TermsOfService />} />
+
+
+            <Route path="*" element={<ErrorNotFound />} />
           </Routes>
           <Footer />
       </Router>

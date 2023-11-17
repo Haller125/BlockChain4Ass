@@ -19,10 +19,6 @@ contract WeatherBetToken is ERC20, Ownable {
         _burn(from, amount * 10 ** decimals());
     }
 
-    function decimals() public view virtual override returns (uint8) {
-        return 18;
-    }
-
     function buyTokens() external payable {
         require(msg.value > 0, "Must send Sepolia to buy tokens");
         uint256 tokensToMint = msg.value * TOKENS_PER_SEPOLIA;
