@@ -11,7 +11,12 @@ import Footer from './components/footer.jsx';
 import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
 import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
 import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
+<<<<<<< HEAD
 import ListBetsComponent from './ListBetsComponent.jsx';
+=======
+import "./styles/main.css";
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy.jsx';
+>>>>>>> origin/main
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
@@ -105,9 +110,11 @@ const App = () => {
         setIsConnected(true);
       } catch (error) {
         console.error("Error connecting to MetaMask", error);
+        alert("Error connecting to MetaMask")
       }
     } else {
       console.error("MetaMask not found. Please install MetaMask.");
+      alert("MetaMask not found. Please install MetaMask.")
     }
   };
 
@@ -158,8 +165,8 @@ const App = () => {
                   walletAddress={walletAddress}
               />} 
             />
-            <Route path="/termsOfService" element={<TermsOfService />} />
-            <Route path="/privacyPolicy" element={<TermsOfService />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/all" element={<ListBetsComponent />} />
 
             <Route path="*" element={<ErrorNotFound />} />

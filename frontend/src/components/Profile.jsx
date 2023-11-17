@@ -4,6 +4,8 @@ import { weatherBetTokenAddress, weatherBettingContractAddress } from '../abi/ad
 import weatherBetTokenAbi from "../abi/weatherBetTokenAbi";
 import  { WalletContext } from "../WalletContext";
 import { FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import "../styles/Profile.css"
+import "../styles/main.css";
 
 const AccountProfileComponent = ({ walletAddress }) => {
     const [tokenBalance, setTokenBalance] = useState('0');
@@ -24,10 +26,12 @@ const AccountProfileComponent = ({ walletAddress }) => {
                 const decimals = await tokenContract.decimals();
                 setTokenBalance(ethers.formatUnits(balance, decimals));
 
-                console.log("Token balance fetched successfully!");
+                console.log("Token balance fetched successfully!")
+                alert("Token balance fetched successfully!")
                 setIsDataLoaded(true);
             } catch (error) {
                 console.error("Error fetching token balance", error);
+                alert("Error fetching token balance")
             }
         };
 
@@ -42,6 +46,7 @@ const AccountProfileComponent = ({ walletAddress }) => {
                 setTokensPerSepolia(value);
             } catch (error) {
                 console.error("Error fetching TOKENS_PER_SEPOLIA", error);
+                alert("Error fetching TOKENS_PER_SEPOLIA")
             }
         };
 
@@ -74,6 +79,7 @@ const AccountProfileComponent = ({ walletAddress }) => {
     const buyTokens = async () => {
         if (!signer) {
             console.error('Wallet not connected');
+            alert("Wallet not connected")
             return;
         }
 
@@ -84,14 +90,17 @@ const AccountProfileComponent = ({ walletAddress }) => {
             const transaction = await tokenContract.buyTokens({ value: ethers.parseEther(sepoliaAmount) });
             await transaction.wait();
             console.log('Tokens purchased successfully');
+            alert("Tokens purchased successfully")
         } catch (error) {
             console.error('Error purchasing tokens:', error);
+            alert("Error purchasing tokens")
         }
     };
 
     const withdrawTokens = async () => {
         if (!signer) {
             console.error('Wallet not connected');
+            alert("Wallet not connected")
             return;
         }
 
@@ -101,8 +110,10 @@ const AccountProfileComponent = ({ walletAddress }) => {
             const transaction = await tokenContract.withdraw();
             await transaction.wait();
             console.log('Tokens withdrawn successfully');
+            alert("Tokens withdrawn successfully")
         } catch (error) {
             console.error('Error withdrawing tokens:', error);
+            alert("Error withdrawing tokens")
         }
     };
 
@@ -120,8 +131,10 @@ const AccountProfileComponent = ({ walletAddress }) => {
             await tx.wait();
 
             console.log(`Successfully approved ${approvalAmount} tokens.`);
+            alert(`Successfully approved ${approvalAmount} tokens.`)
         } catch (error) {
             console.error("Error in token approval", error);
+            alert("Error in token approval")
         }
     };
 
@@ -132,39 +145,55 @@ const AccountProfileComponent = ({ walletAddress }) => {
     }
     
     return (
-        <div>
-            <h1>Profile Page</h1>
-            <div>
-                <strong>Wallet Address:</strong> {walletAddress}
+        <div className="profile-page">
+        <div className="first-container">
+          <div className="profile-container">
+            <div className="profile-heading">Profile Page</div>
+            <div className="wallet-info">
+              <strong>Wallet Address:</strong> {walletAddress}
             </div>
-            <div>
-                <strong>WBT Token Balance:</strong> {tokenBalance} WBT
+            <div className="wallet-info">
+              <strong>WBT Token Balance:</strong> {tokenBalance} WBT
             </div>
-            <div>
-                <label>
-                    Sepolia to Spend: 
-                    <input 
-                        type="number" 
-                        value={sepoliaAmount} 
-                        onChange={(e) => setSepoliaAmount(e.target.value)} 
-                    />
-                </label>
-                <p>Estimated Tokens to Buy: {tokensToBuy} WBT</p>
-                <button onClick={buyTokens}>Buy Tokens</button>
-            </div>
-            <button onClick={withdrawTokens}>Withdraw All Tokens</button>
-            <FormGroup>
-                    <FormLabel>Approval Amount:</FormLabel>
-                    <FormControl
-                        type="text"
-                        value={approvalAmount}
-                        onChange={e => setApprovalAmount(e.target.value)}
-                        placeholder="Amount to Approve"
-                    />
-                </FormGroup>
-                <Button variant="primary" className="mainButton" onClick={approveTokens}>Approve Tokens</Button>
+          </div>
         </div>
+  
+        <div className="second-row">
+          <div className="second-container">
+            <div className="label-input-group">
+              <label>Sepolia to Spend:</label>
+              <input
+                type="number"
+                value={sepoliaAmount}
+                onChange={(e) => setSepoliaAmount(e.target.value)}
+              />
+              <p className="estimated-tokens">Estimated Tokens to Buy: {tokensToBuy} WBT</p>
+              <button className="main-button" onClick={buyTokens}>
+                Buy Tokens
+              </button>
+            </div>
+            <button className="main-button" onClick={withdrawTokens}>
+              Withdraw All Tokens
+            </button>
+          </div>
+  
+          <div className="third-container">
+            <div className="approval-group">
+              <label>Approval Amount:</label>
+              <input
+                type="text"
+                value={approvalAmount}
+                onChange={(e) => setApprovalAmount(e.target.value)}
+                placeholder="Amount to Approve"
+              />
+              <button className="main-button" onClick={approveTokens}>
+                Approve Tokens
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
-};
+  };
 
 export default AccountProfileComponent;
