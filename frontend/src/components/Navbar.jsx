@@ -1,7 +1,7 @@
 // Navbar.jsx
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 import '../styles/Navbar.css'; // Import your CSS file for styling
 import logo from '../images/logo.png'; // Import the logo image
@@ -12,6 +12,7 @@ const Navbar = () => {
     const [provider, setProvider] = useState(null);
     const [signer, setSigner] = useState(null);
     const [walletAddress, setWalletAddress] = useState('');
+    const navigate = useNavigate();  
 
     const connectWallet = async () => {
         if (window.ethereum) {
@@ -36,6 +37,10 @@ const Navbar = () => {
         }
     };
 
+    const goToProfilePage = () => {
+        navigate('/profile'); // Use navigate to redirect to the /profile page
+    };
+
     return (
         <nav>
             <ul className="navbar-list">
@@ -58,9 +63,9 @@ const Navbar = () => {
                             Connect to MetaMask
                         </button>
                     ) : (
-                        <div className="navbar-item">
-                            <span>Connected: {walletAddress}</span>
-                        </div>
+                        <button className="connect-wallet-button" onClick={goToProfilePage}>
+                            Go to Profile
+                        </button>
                     )}
                 </li>
             </ul>
