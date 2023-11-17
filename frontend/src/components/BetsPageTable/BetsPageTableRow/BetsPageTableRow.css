@@ -1,13 +1,13 @@
 .BetsPageTableRow{
-    width: 1000px;
+    margin-right: 50px;
+    margin-left: 50px;
     height: auto;
     flex-shrink: 0;
     justify-content: center;
 }
 
 .BetsPageTableRow div{
-    margin-top: 10px;
-    margin-bottom: 10px;
+
 }
 
 .dateData {
