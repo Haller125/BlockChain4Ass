@@ -1,39 +1,14 @@
 // Navbar.jsx
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ethers } from 'ethers';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css'; // Import your CSS file for styling
 import logo from '../images/logo.png'; // Import the logo image
 import locationIcon from '../images/location.png'
 
-const Navbar = () => {
-    const [isConnected, setIsConnected] = useState(false);
-    const [provider, setProvider] = useState(null);
-    const [signer, setSigner] = useState(null);
-    const [walletAddress, setWalletAddress] = useState('');
+const Navbar = ({isConnected, connectWallet, walletAddress}) => {
+    const navigate = useNavigate();
 
-    const connectWallet = async () => {
-        if (window.ethereum) {
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-                const newProvider = new ethers.BrowserProvider(window.ethereum);
-                setProvider(newProvider);
-
-                const newSigner = await newProvider.getSigner();
-                setSigner(newSigner);
-
-                const newAddress = await newSigner.getAddress();
-                setWalletAddress(newAddress);
-
-                setIsConnected(true);
-            } catch (error) {
-                console.error("Error connecting to MetaMask", error);
-            }
-        } else {
-            console.error("MetaMask not found. Please install MetaMask.");
-        }
+    const goToProfilePage = () => {
+        navigate('/profile'); // Use navigate to redirect to the /profile page
     };
 
     return (
@@ -58,9 +33,9 @@ const Navbar = () => {
                             Connect to MetaMask
                         </button>
                     ) : (
-                        <div className="navbar-item">
-                            <span>Connected: {walletAddress}</span>
-                        </div>
+                        <button className="connect-wallet-button" onClick={goToProfilePage}>
+                            Go to Profile
+                        </button>
                     )}
                 </li>
             </ul>

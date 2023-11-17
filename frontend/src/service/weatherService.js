@@ -9,6 +9,7 @@ const exclude = "current,minutely,hourly,alerts";
 const appid = "f1706d87612caed6900d28f07e3f451b";
 const units = "metric";
 const BASE_COEF = 1.2;
+const Marge = 0.1;
 const WIND_SPEED_DELTA = 1.5;
 const PLUS_DELTA = 5;
 
