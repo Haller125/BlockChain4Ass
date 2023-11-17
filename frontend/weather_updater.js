@@ -5,8 +5,9 @@ dotenv.config();
 const weatherBettingContractAddress = process.env.VITE_WEATHER_BETTING_CONTRACT_ADDRESS;
 import weatherBettingContractAbi from "./src/abi/weatherBettingContractAbi.js";
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
-const provider = new ethers.EtherscanProvider("sepolia", "3FVTWVZH5M5WDEBEGJBT1BM1MTDY5GF8H4");
+const provider = new ethers.EtherscanProvider("sepolia", ETHERSCAN_API_KEY);
 console.log("provider", provider);
 const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 console.log("wallet", wallet);
@@ -35,9 +36,9 @@ const updateWeatherData = async () => {
     const oneDayInSeconds = 86400;
 
     let day = 0;
-    let alwaystrue = true;
+    let always = true;
 
-    do {
+    while (always) {
       const dayTimestamp = currentTimestamp + day * oneDayInSeconds;
       const { temperature, windSpeed } = hardcodedWeatherData[day];
 
@@ -52,8 +53,8 @@ const updateWeatherData = async () => {
 
       console.log(`Weather data updated for timestamp ${dayTimestamp}: Temp = ${temperature}, Wind = ${windSpeed}`);
 
-      day = (day + 1) % 7; // Loop from 0 to 6
-    } while (alwaystrue); // Loop forever
+      day = (day + 1) % 7;
+    }
 
   } catch (error) {
     console.error("Error updating weather data:", error);
