@@ -76,6 +76,42 @@ The DApp incorporates coefficients to enhance the complexity and potential retur
 
 ```javascript
 // Code snippet for coefficient calculation
+const BASE_COEF = 1.2;
+const WIND_SPEED_DELTA = 1.5;
+const PLUS_DELTA = 5;
+
+const convertData = (weatherData, nextDayCount) => {
+  // ... (Existing Code)
+
+  return {
+    date: date,
+    betsData:[
+      {temp: moreThanTemp,
+       coef: moreThanTempCoef,
+       type: typeOfBet.moreThanTemp},
+
+      {temp: moreThanTempPlus,
+       coef: moreThanTempPlusCoef,
+       type: typeOfBet.moreThanTempPlus},
+
+      {temp: lessThanTemp,
+        coef: lessThanTempCoef,
+        type: typeOfBet.lessThanTemp},
+
+      {temp: lessThanTempPlus,
+          coef: lessThanTempPlusCoef,
+          type: typeOfBet.lessThanTempPlus},
+
+      {temp: moreThanWindSpeed,
+          coef: moreThanWindSpeedCoef,
+          type: typeOfBet.moreThanWindSpeed},
+
+      {temp: lessThanWindSpeed,
+          coef: lessThanWindSpeedCoef,
+          type: typeOfBet.lessThanWindSpeed},
+    ]
+  };
+};
 // ...
 ```
 
