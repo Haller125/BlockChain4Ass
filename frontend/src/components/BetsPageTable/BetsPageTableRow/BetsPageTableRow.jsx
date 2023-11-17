@@ -4,7 +4,6 @@ import {useState} from "react";
 // eslint-disable-next-line no-unused-vars,react-refresh/only-export-components
 
 const BetsPageTableRow = ({dayBetData, modalShow, time}) => {
-    console.log(dayBetData)
     let date = new Date(dayBetData.date * 1000);
 
     return (

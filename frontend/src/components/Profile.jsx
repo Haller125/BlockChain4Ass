@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 const AccountProfileComponent = ({ walletAddress, weatherBetTokenAddress, weatherBetTokenAbi, provider }) => {
     const [tokenBalance, setTokenBalance] = useState('0');
     const [isDataLoaded, setIsDataLoaded] = useState(false);
+    
 
     useEffect(() => {
         const loadTokenBalance = async (address, provider) => {
