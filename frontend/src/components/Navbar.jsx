@@ -21,9 +21,6 @@ const Navbar = ({isConnected, connectWallet}) => {
                     <Link to="/" className="navbar-link">Home</Link>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/weather-betting" className="navbar-link">How it Works</Link>
-                </li>
-                <li className="navbar-item">
                     <p>The chosen city</p>
                     <p><img src={locationIcon} alt="Location Icon" />Almaty</p>
                 </li>
