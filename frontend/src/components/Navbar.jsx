@@ -4,7 +4,7 @@ import '../styles/Navbar.css'; // Import your CSS file for styling
 import logo from '../images/logo.png'; // Import the logo image
 import locationIcon from '../images/location.png'
 
-const Navbar = ({isConnected, connectWallet, walletAddress}) => {
+const Navbar = ({isConnected, connectWallet}) => {
     const navigate = useNavigate();
 
     const goToProfilePage = () => {

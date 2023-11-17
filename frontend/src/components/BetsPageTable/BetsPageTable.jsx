@@ -22,7 +22,7 @@ const BetsPageTable = ({items}) => {
     return (
         <div>
             {items.map((item) => (
-                <BetsPageTableRow key={item.id} dayBetData={item} time={time} modalShow={handleModalShow}/>
+                <BetsPageTableRow key={item.date} dayBetData={item} time={time} modalShow={handleModalShow}/>
             ))}
             <ApproveModal show={showModal} data={selectedItem} time={time} handleClose={handleModalClose}/>
         </div>
