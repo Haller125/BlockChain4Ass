@@ -1,0 +1,70 @@
+/* Footer.css */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: #D9D9D9; /* Set your desired background color */
+    color: #34495E;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .footer-column {
+    margin-top: 20px;
+    flex: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .first-column{
+    width: 400px;
+  }
+
+  .first-column p,
+  .second-column p{
+    margin-top: 20px;
+  }
+
+  /* Style for the second column */
+  .second-column h2,
+  .second-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+  .second-column ul li,
+  .second-column p{
+    margin-bottom: 30px;
+  }
+
+  .second-column ul li p{
+    text-align: right;
+  }
+  
+  .second-column a {
+    color: #34495E;
+    text-decoration: none;
+  }
+  
+  .second-column a:hover {
+    color: #007bff; /* Set your desired link hover color */
+  }
+  
+  .third-column img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+  }
+
+  .third-column{
+    text-align: center;
+  }
+
+  .second-column p:first-child,
+  .third-column p:first-child{
+    font-size: larger;
+  }
