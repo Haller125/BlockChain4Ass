@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="footer-column third-column">
             <p>Follow us on Telegram!</p>
             <a href="https://t.me/WeatherBeting" target="_blank" rel="noopener noreferrer">
-            <img src={qrCodeImage} alt="Telegram QR Code" onClick="https://t.me/WeatherBeting" />
+            <img src={qrCodeImage} alt="Telegram QR Code" />
             </a>
             <p>Click me or scan</p>
           </div>

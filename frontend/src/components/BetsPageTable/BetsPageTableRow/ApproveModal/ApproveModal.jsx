@@ -34,12 +34,17 @@ const ApproveModal = ({ data, show, time, handleClose }) => {
         const direction = data.type.startsWith("More") ? Direction.Higher : Direction.Lower;
         const value = data.temp;
         const timestampSecond = Math.floor(time.getTime() / 1000);
-        // FIX: Get from Ergali's commit
-        // const tokenAmount = ethers.parseEther(tokenAmount);
-        const tokenAmount = ethers.parseEther("1");
-        const coefficient = data.coef;
+        const tokenAmount = ethers.parseEther(gain);
+        const coefficient = data.coef * 100;
 
-        const bet = { betType, direction, value, timestampSecond, tokenAmount, coefficient };
+        const bet = {
+            betType: parseInt(betType),
+            direction: parseInt(direction),
+            value: value.toString(),
+            timestampSecond: timestampSecond,
+            tokenAmount: tokenAmount,
+            coefficient: coefficient
+        }
         console.log("bet", bet);
 
         try {
@@ -51,8 +56,14 @@ const ApproveModal = ({ data, show, time, handleClose }) => {
 
 
             const tx = await weatherContract.placeBet(
-                bet
+                bet.betType,
+                bet.direction,
+                bet.value,
+                bet.timestampSecond, // Make sure this matches the expected format in the contract
+                bet.tokenAmount,
+                bet.coefficient
             );
+            
             await tx.wait();
 
             console.log("Bet placed successfully!");

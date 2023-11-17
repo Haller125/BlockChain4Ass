@@ -11,6 +11,7 @@ import Footer from './components/footer.jsx';
 import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
 import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
 import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
+import ListBetsComponent from './ListBetsComponent.jsx';
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
@@ -159,7 +160,7 @@ const App = () => {
             />
             <Route path="/termsOfService" element={<TermsOfService />} />
             <Route path="/privacyPolicy" element={<TermsOfService />} />
-
+            <Route path="/all" element={<ListBetsComponent />} />
 
             <Route path="*" element={<ErrorNotFound />} />
           </Routes>

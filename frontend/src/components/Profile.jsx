@@ -78,6 +78,7 @@ const AccountProfileComponent = ({ walletAddress }) => {
         }
 
         try {
+            console.log('Buying tokens...');
             const tokenContract = new ethers.Contract(weatherBetTokenAddress, weatherBetTokenAbi, signer);
             console.log('tokenContract', tokenContract);
             const transaction = await tokenContract.buyTokens({ value: ethers.parseEther(sepoliaAmount) });
