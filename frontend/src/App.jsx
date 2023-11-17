@@ -11,12 +11,9 @@ import Footer from './components/footer.jsx';
 import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
 import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
 import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
-<<<<<<< HEAD
 import ListBetsComponent from './ListBetsComponent.jsx';
-=======
 import "./styles/main.css";
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy.jsx';
->>>>>>> origin/main
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
