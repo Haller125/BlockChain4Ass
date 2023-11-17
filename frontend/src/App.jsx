@@ -6,7 +6,8 @@ import fetchWeatherData from "./service/weatherService.js";
 import { useEffect, useState, useContext } from "react";
 import { WalletContext } from './WalletContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProfilePage from './components/Profile.jsx'
+import ProfilePage from './components/Profile.jsx';
+import Footer from './components/footer.jsx';
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
@@ -136,6 +137,7 @@ const App = () => {
             />
             
           </Routes>
+          <Footer />
       </Router>
     </div>
   );
