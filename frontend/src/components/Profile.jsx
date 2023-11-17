@@ -26,10 +26,12 @@ const AccountProfileComponent = ({ walletAddress }) => {
                 const decimals = await tokenContract.decimals();
                 setTokenBalance(ethers.formatUnits(balance, decimals));
 
-                console.log("Token balance fetched successfully!");
+                console.log("Token balance fetched successfully!")
+                alert("Token balance fetched successfully!")
                 setIsDataLoaded(true);
             } catch (error) {
                 console.error("Error fetching token balance", error);
+                alert("Error fetching token balance")
             }
         };
 
@@ -44,6 +46,7 @@ const AccountProfileComponent = ({ walletAddress }) => {
                 setTokensPerSepolia(value);
             } catch (error) {
                 console.error("Error fetching TOKENS_PER_SEPOLIA", error);
+                alert("Error fetching TOKENS_PER_SEPOLIA")
             }
         };
 
@@ -76,6 +79,7 @@ const AccountProfileComponent = ({ walletAddress }) => {
     const buyTokens = async () => {
         if (!signer) {
             console.error('Wallet not connected');
+            alert("Wallet not connected")
             return;
         }
 
@@ -85,14 +89,17 @@ const AccountProfileComponent = ({ walletAddress }) => {
             const transaction = await tokenContract.buyTokens({ value: ethers.parseEther(sepoliaAmount) });
             await transaction.wait();
             console.log('Tokens purchased successfully');
+            alert("Tokens purchased successfully")
         } catch (error) {
             console.error('Error purchasing tokens:', error);
+            alert("Error purchasing tokens")
         }
     };
 
     const withdrawTokens = async () => {
         if (!signer) {
             console.error('Wallet not connected');
+            alert("Wallet not connected")
             return;
         }
 
@@ -102,8 +109,10 @@ const AccountProfileComponent = ({ walletAddress }) => {
             const transaction = await tokenContract.withdraw();
             await transaction.wait();
             console.log('Tokens withdrawn successfully');
+            alert("Tokens withdrawn successfully")
         } catch (error) {
             console.error('Error withdrawing tokens:', error);
+            alert("Error withdrawing tokens")
         }
     };
 
@@ -121,8 +130,10 @@ const AccountProfileComponent = ({ walletAddress }) => {
             await tx.wait();
 
             console.log(`Successfully approved ${approvalAmount} tokens.`);
+            alert(`Successfully approved ${approvalAmount} tokens.`)
         } catch (error) {
             console.error("Error in token approval", error);
+            alert("Error in token approval")
         }
     };
 

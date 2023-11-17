@@ -106,9 +106,11 @@ const App = () => {
         setIsConnected(true);
       } catch (error) {
         console.error("Error connecting to MetaMask", error);
+        alert("Error connecting to MetaMask")
       }
     } else {
       console.error("MetaMask not found. Please install MetaMask.");
+      alert("MetaMask not found. Please install MetaMask.")
     }
   };
 
