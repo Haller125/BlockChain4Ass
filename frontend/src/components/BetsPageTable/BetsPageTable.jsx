@@ -15,6 +15,10 @@ const BetsPageTable = ({items}) => {
         setTime(time)
     };
 
+    const handleModalClose = () => {
+        setShowModal(false);
+    };
+
 
     return (
         <div>
@@ -22,7 +26,7 @@ const BetsPageTable = ({items}) => {
                 // eslint-disable-next-line react/jsx-key
                 <BetsPageTableRow key={item.id} dayBetData={item} time={time} modalShow={handleModalShow}/>
             ))}
-            <ApproveModal show={showModal} data={selectedItem} time={time}/>
+            <ApproveModal show={showModal} data={selectedItem} time={time} handleClose={handleModalClose}/>
         </div>
     );
 };
