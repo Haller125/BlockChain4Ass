@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, {useState} from 'react';
+import {useState} from 'react';
 import BetsPageTableRow from "./BetsPageTableRow/BetsPageTableRow.jsx";
 import ApproveModal from "./BetsPageTableRow/ApproveModal/ApproveModal.jsx";
 
@@ -19,7 +18,6 @@ const BetsPageTable = ({items}) => {
     return (
         <div>
             {items.map((item) => (
-                // eslint-disable-next-line react/jsx-key
                 <BetsPageTableRow key={item.id} dayBetData={item} time={time} modalShow={handleModalShow}/>
             ))}
             <ApproveModal show={showModal} data={selectedItem} time={time}/>

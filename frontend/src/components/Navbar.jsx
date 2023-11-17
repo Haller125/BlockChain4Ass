@@ -1,40 +1,11 @@
 // Navbar.jsx
 
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ethers } from 'ethers';
 import '../styles/Navbar.css'; // Import your CSS file for styling
 import logo from '../images/logo.png'; // Import the logo image
 import locationIcon from '../images/location.png'
 
-const Navbar = () => {
-    const [isConnected, setIsConnected] = useState(false);
-    const [provider, setProvider] = useState(null);
-    const [signer, setSigner] = useState(null);
-    const [walletAddress, setWalletAddress] = useState('');
-
-    const connectWallet = async () => {
-        if (window.ethereum) {
-            try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-                const newProvider = new ethers.BrowserProvider(window.ethereum);
-                setProvider(newProvider);
-
-                const newSigner = await newProvider.getSigner();
-                setSigner(newSigner);
-
-                const newAddress = await newSigner.getAddress();
-                setWalletAddress(newAddress);
-
-                setIsConnected(true);
-            } catch (error) {
-                console.error("Error connecting to MetaMask", error);
-            }
-        } else {
-            console.error("MetaMask not found. Please install MetaMask.");
-        }
-    };
+const Navbar = ({isConnected, connectWallet, walletAddress}) => {
 
     return (
         <nav>

@@ -7,4 +7,16 @@ const typeOfBet = {
     lessThanWindSpeed: "Less Than (m/s)",
 };
 
+const BetType = {
+    Temperature: '0',
+    WindSpeed: '1'
+};
+
+const Direction = {
+    Higher: '0',
+    Lower: '1'
+};
+
 export default typeOfBet;
+
+export {BetType, Direction};
