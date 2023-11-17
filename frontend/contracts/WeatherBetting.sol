@@ -21,7 +21,7 @@ contract WeatherBetting is Ownable {
         Direction direction;
         uint256 value; // Value to compare against, e.g., temperature in Celsius or wind speed in m/s
         uint256 timestampDay; // Timestamp representing the day (00:00)
-        uint256 coefficient;
+        uint256 coefficient; // Scaled coefficient (e.g., 125 for 1.25)
         bool processed;
     }
 
@@ -129,12 +129,11 @@ contract WeatherBetting is Ownable {
         }
 
         if (won) {
+            uint256 payout = (bet.amount * bet.coefficient) / 100;
+
             // For simplicity, we just return twice the bet amount in tokens in case of a win. A real contract might have more complex payout calculations.
             require(
-                weatherBetToken.transfer(
-                    bet.bettor,
-                    bet.amount * bet.coefficient
-                ),
+                weatherBetToken.transfer(bet.bettor, payout),
                 "Token transfer failed."
             );
         }

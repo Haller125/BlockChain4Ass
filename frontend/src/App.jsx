@@ -1,93 +1,35 @@
 import { ethers } from 'ethers';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar.jsx';
-import BetsPageTable from "./components/BetsPageTable/BetsPageTable.jsx";
+import Navbar from './components/common/Navbar/Navbar.jsx';
+import BetsPageTable from "./components/betting/BetsPageTable/BetsPageTable.jsx";
 import fetchWeatherData from "./service/weatherService.js";
 import { useEffect, useState, useContext } from "react";
-import { WalletContext } from './WalletContext';
+import { WalletContext } from './context/WalletContext.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProfilePage from './components/Profile.jsx';
-import Footer from './components/footer.jsx';
-import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
-import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
-import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
-import "./styles/main.css";
-import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy.jsx';
-
-// const App = () => {
-//   const [isConnected, setIsConnected] = useState(false);
-//   const [provider, setProvider] = useState(null);
-//   const [signer, setSigner] = useState(null);
-//   const [walletAddress, setWalletAddress] = useState(null);
-
-// const connectWallet = async () => {
-//   if (window.ethereum) {
-//     try {  
-//       await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-//       const newProvider = new ethers.BrowserProvider(window.ethereum);
-//       setProvider(newProvider);
-
-//       const newSigner = await newProvider.getSigner();
-//       setSigner(newSigner);
-
-//       const newAddress = await newSigner.getAddress();
-//       setWalletAddress(newAddress);
-
-//       setIsConnected(true);
-//     } catch (error) {
-//       console.error("Error connecting to MetaMask", error);
-//     }
-//   } else {
-//     console.error("MetaMask not found. Please install MetaMask.");
-//   }
-// };
-
-//   if (!isConnected) {
-//     return (
-//       <div>
-//         <h1 className="headings">You must connect your wallet to continue.</h1>
-//         <button onClick={connectWallet}>Connect to MetaMask</button>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div>
-//       <Router>
-//         <Navbar />
-// <Container className={"container-lg"}>
-//   <h1 className="text-primary">Weather Betting App</h1>
-//   <AccountProfileComponent
-//     walletAddress={walletAddress}
-//     weatherBetTokenAddress={weatherBetTokenAddress}
-//     weatherBetTokenAbi={weatherBetTokenAbi}
-//     provider={provider}
-//   />
-//   <WeatherBettingComponent
-//     weatherBettingContractAddress={weatherBettingContractAddress}
-//     weatherBettingContractAbi={weatherBettingContractAbi}
-//     signer={signer}
-//   />
-//   <TokenApprovalComponent
-//     spenderAddress={weatherBettingContractAddress}
-//     weatherBetTokenAddress={weatherBetTokenAddress}
-//     weatherBetTokenAbi={weatherBetTokenAbi}
-//     signer={signer}
-//   />
-// </Container>
-//       </Router>
-//     </div>
-//   );
-// };
-
-// export default App;
+import ProfilePage from './components/Profile/Profile.jsx';
+import Footer from './components/common/Footer/Footer.jsx';
+import ErrorNotFound from "./components/error/ErrorNotFound/ErrorNotFound.jsx";
+import ErrorNoConnection from "./components/error/ErrorNoConnection/ErrorNoConnection";
+import TermsOfService from "./components/policy/TermsOfService/TermsOfService.jsx";
+import ListBetsComponent from './components/betting/ListBetsComponent.jsx';
+import "./App.css";
+import PrivacyPolicy from './components/policy/PrivacyPolicy/PrivacyPolicy.jsx';
 
 const App = () => {
   const [isConnected, setIsConnected] = useState(false);
   const { setProvider, setSigner } = useContext(WalletContext);
   const [walletAddress, setWalletAddress] = useState('');
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Define the async function inside the effect
+    const fetchData = async () => {
+      const weatherData = await fetchWeatherData();
+      setData(weatherData);
+    };
+    // Call the async function that was defined above
+    fetchData();
+  }, []);
 
   const connectWallet = async () => {
     if (window.ethereum) {
@@ -106,9 +48,11 @@ const App = () => {
         setIsConnected(true);
       } catch (error) {
         console.error("Error connecting to MetaMask", error);
+        alert("Error connecting to MetaMask")
       }
     } else {
       console.error("MetaMask not found. Please install MetaMask.");
+      alert("MetaMask not found. Please install MetaMask.")
     }
   };
 
@@ -128,18 +72,8 @@ const App = () => {
   }, []);
 
   if (!isOnline) {
-    return <ErrorNoConnction /> ;
+    return <ErrorNoConnection /> ;
   }
-
-  useEffect(() => {
-    // Define the async function inside the effect
-    const fetchData = async () => {
-      const weatherData = await fetchWeatherData();
-      setData(weatherData);
-    };
-    // Call the async function that was defined above
-    fetchData();
-  }, []);
 
   return (
     <div>
@@ -161,7 +95,7 @@ const App = () => {
             />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
+            <Route path="/all" element={<ListBetsComponent />} />
 
             <Route path="*" element={<ErrorNotFound />} />
           </Routes>

@@ -1,48 +1,64 @@
 import { ethers } from "ethers";
 import dotenv from "dotenv";
 dotenv.config();
-const weatherBettingContractAddress =
-  process.env.VITE_WEATHER_BETTING_CONTRACT_ADDRESS;
+
+const weatherBettingContractAddress = process.env.VITE_WEATHER_BETTING_CONTRACT_ADDRESS;
 import weatherBettingContractAbi from "./src/abi/weatherBettingContractAbi.js";
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
-console.log(weatherBettingContractAddress);
-console.log('PRIVATE_KEY', PRIVATE_KEY);
-
-const provider = new ethers.EtherscanProvider("sepolia");
-
-console.log('provider', provider);
-
+const provider = new ethers.EtherscanProvider("sepolia", ETHERSCAN_API_KEY);
+console.log("provider", provider);
 const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+console.log("wallet", wallet);
 
-console.log('wallet', wallet);
+const hardcodedWeatherData = [
+  { temperature: 25, windSpeed: 5 },
+  { temperature: 26, windSpeed: 6 },
+  { temperature: 24, windSpeed: 4 },
+  { temperature: 23, windSpeed: 5 },
+  { temperature: 22, windSpeed: 6 },
+  { temperature: 27, windSpeed: 7 },
+  { temperature: 28, windSpeed: 8 },
+];
 
-// FIX: Doesn't work
 const updateWeatherData = async () => {
   try {
     console.log("Updating weather data...");
 
-    const temperature = 25;
-    const windSpeed = 5;
-    const timestampMinute = 100;
     const weatherContract = new ethers.Contract(
       weatherBettingContractAddress,
       weatherBettingContractAbi,
       wallet
     );
-    console.log('weatherContract', weatherContract);
 
-    const tx = await weatherContract.updateWeatherData(
-      timestampMinute,
-      temperature,
-      windSpeed
-    );
-    await tx.wait();
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const oneDayInSeconds = 86400;
 
-    console.log(`Weather data updated for timestamp ${timestampMinute}`);
+    let day = 0;
+    let always = true;
+
+    while (always) {
+      const dayTimestamp = currentTimestamp + day * oneDayInSeconds;
+      const { temperature, windSpeed } = hardcodedWeatherData[day];
+
+      console.log(`Updating weather data for timestamp ${new Date(dayTimestamp * 1000)}: Temp = ${temperature}, Wind = ${windSpeed}`);
+
+      const tx = await weatherContract.updateWeatherData(
+        dayTimestamp,
+        temperature,
+        windSpeed
+      );
+      await tx.wait();
+
+      console.log(`Weather data updated for timestamp ${dayTimestamp}: Temp = ${temperature}, Wind = ${windSpeed}`);
+
+      day = (day + 1) % 7;
+    }
+
   } catch (error) {
     console.error("Error updating weather data:", error);
   }
 };
 
-setInterval(updateWeatherData, 1000 * 60);
+updateWeatherData();

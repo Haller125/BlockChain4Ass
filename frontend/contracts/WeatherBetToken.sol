@@ -8,7 +8,6 @@ contract WeatherBetToken is ERC20, Ownable {
     uint256 public constant TOKENS_PER_SEPOLIA = 1000000;
 
     constructor() ERC20("WeatherBetToken", "WBT") Ownable(msg.sender) {
-        _mint(msg.sender, 50 * 10 ** decimals());
     }
 
     function mint(address to, uint256 amount) external onlyOwner {
