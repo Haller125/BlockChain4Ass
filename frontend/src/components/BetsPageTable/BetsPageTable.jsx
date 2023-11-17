@@ -2,6 +2,7 @@ import {useState} from 'react';
 import BetsPageTableRow from "./BetsPageTableRow/BetsPageTableRow.jsx";
 import ApproveModal from "./BetsPageTableRow/ApproveModal/ApproveModal.jsx";
 import "../../styles/BetsPageTable.css"
+import "../../styles/main.css";
 
 const BetsPageTable = ({items}) => {
     const [showModal, setShowModal] = useState(false);

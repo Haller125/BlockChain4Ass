@@ -11,6 +11,8 @@ import Footer from './components/footer.jsx';
 import ErrorNotFound from "./components/ErrorNotFound/ErrorNotFound.jsx";
 import ErrorNoConnction from "./components/ErrorNoConnection/ErrorNoConnection";
 import TermsOfService from "./components/TermsOfService/TermsOfService.jsx";
+import "./styles/main.css";
+import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy.jsx';
 
 // const App = () => {
 //   const [isConnected, setIsConnected] = useState(false);
@@ -157,8 +159,8 @@ const App = () => {
                   walletAddress={walletAddress}
               />} 
             />
-            <Route path="/termsOfService" element={<TermsOfService />} />
-            <Route path="/privacyPolicy" element={<TermsOfService />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
 
             <Route path="*" element={<ErrorNotFound />} />

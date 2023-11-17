@@ -1,0 +1,145 @@
+/* ProfilePage.css */
+
+/* .profile-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .profile-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .wallet-info {
+    margin-bottom: 15px;
+  }
+  
+  .label-input-group {
+    margin-bottom: 15px;
+  }
+  
+  .label-input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .label-input-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .estimated-tokens {
+    margin-top: 10px;
+  }
+  
+  .action-buttons {
+    margin-top: 20px;
+  }
+  
+  .approval-group {
+    margin-top: 20px;
+  }
+  
+  .approval-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .approval-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .main-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .main-button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+/* ProfilePage.css */
+
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .first-container,
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .profile-container,
+  .second-container,
+  .third-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    flex: 1;
+    margin-right: 10px; /* Add margin-right for spacing between containers */
+    margin-left: 10px; /* Add margin-left for spacing between containers */
+  }
+  
+  .main-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px
+  }
+  
+  .main-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Additional Styles for Better Look */
+  
+  .profile-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .wallet-info {
+    margin-bottom: 15px;
+  }
+  
+  .label-input-group,
+  .approval-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .estimated-tokens {
+    margin-top: 5px;
+    font-style: italic;
+    color: #555;
+  }
