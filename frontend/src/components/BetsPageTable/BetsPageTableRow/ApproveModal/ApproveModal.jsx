@@ -90,7 +90,7 @@ const ApproveModal = ({ data, show, time, handleClose }) => {
                     <div className="bet-gain">
                         possible gain: <span>{Math.round(gain*data.coef*100)/100} WBT</span>
                     </div>
-                    <Button variant="primary" className="mainButton" onClick={placeBet}>Close</Button>
+                    <Button variant="primary" className="mainButton" onClick={placeBet}>Bet</Button>
                 </Form>
             </div>
         </div>
