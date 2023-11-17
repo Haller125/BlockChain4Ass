@@ -14,13 +14,17 @@ const BetsPageTable = ({items}) => {
         setTime(time)
     };
 
+    const handleModalClose = () => {
+        setShowModal(false);
+    };
+
 
     return (
         <div>
             {items.map((item) => (
                 <BetsPageTableRow key={item.id} dayBetData={item} time={time} modalShow={handleModalShow}/>
             ))}
-            <ApproveModal show={showModal} data={selectedItem} time={time}/>
+            <ApproveModal show={showModal} data={selectedItem} time={time} handleClose={handleModalClose}/>
         </div>
     );
 };
